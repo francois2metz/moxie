@@ -31,7 +31,7 @@ define("moxie/xhr/FormData", [
 			@param {String|Blob|Array|Object} value Value for the field
 			@param {String} filename
 			*/
-		    append: function(name, value, filename) {
+			append: function(name, value, filename) {
 				var self = this, valueType = Basic.typeOf(value);
 
 				// according to specs value might be either Blob or String
