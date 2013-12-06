@@ -110,11 +110,11 @@ define("moxie/xhr/FormData", [
 			*/
 			each: function(cb) {
 				Basic.each(_fields, function(field) {
-					cb(field.value, field.name);
+					cb(field.value, field.name, fied.filename);
 				});
 
 				if (_blob) {
-					cb(_blob.value, _blob.name);
+					cb(_blob.value, _blob.name, _blob.filename);
 				}
 			},
 

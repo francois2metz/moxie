@@ -346,13 +346,13 @@ define("moxie/runtime/html5/xhr/XMLHttpRequest", [
 			_xhr.setRequestHeader('Content-Type', 'multipart/form-data; boundary=' + boundary);
 
 			// append multipart parameters
-			fd.each(function(value, name) {
+			fd.each(function(value, name, filename) {
 				// Firefox 3.6 failed to convert multibyte characters to UTF-8 in sendAsBinary(), 
 				// so we try it here ourselves with: unescape(encodeURIComponent(value))
 				if (value instanceof Blob) {
 					// Build RFC2388 blob
 					multipart += dashdash + boundary + crlf +
-						'Content-Disposition: form-data; name="' + name + '"; filename="' + unescape(encodeURIComponent(value.filename || 'blob')) + '"' + crlf +
+						'Content-Disposition: form-data; name="' + name + '"; filename="' + unescape(encodeURIComponent(filename || 'blob')) + '"' + crlf +
 						'Content-Type: ' + value.type + crlf + crlf +
 						value.getSource() + crlf;
 				} else {
