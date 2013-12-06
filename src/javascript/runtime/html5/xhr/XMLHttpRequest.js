@@ -352,7 +352,7 @@ define("moxie/runtime/html5/xhr/XMLHttpRequest", [
 				if (value instanceof Blob) {
 					// Build RFC2388 blob
 					multipart += dashdash + boundary + crlf +
-						'Content-Disposition: form-data; name="' + name + '"; filename="' + unescape(encodeURIComponent(value.name || 'blob')) + '"' + crlf +
+						'Content-Disposition: form-data; name="' + name + '"; filename="' + unescape(encodeURIComponent(value.filename || 'blob')) + '"' + crlf +
 						'Content-Type: ' + value.type + crlf + crlf +
 						value.getSource() + crlf;
 				} else {
