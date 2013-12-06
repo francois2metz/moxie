@@ -285,7 +285,7 @@ define("moxie/runtime/html5/xhr/XMLHttpRequest", [
 				data.append(data.getBlobName(), new Blob(null, {
 					type: blob.type,
 					data: fr.result
-				}));
+				}), data.getBlobFileName());
 				// invoke send operation again
 				self.send.call(target, meta, data);
 			};

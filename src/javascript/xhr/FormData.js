@@ -29,15 +29,17 @@ define("moxie/xhr/FormData", [
 			@method append
 			@param {String} name Name for the new field
 			@param {String|Blob|Array|Object} value Value for the field
+			@param {String} filename
 			*/
-			append: function(name, value) {
+		    append: function(name, value, filename) {
 				var self = this, valueType = Basic.typeOf(value);
 
 				// according to specs value might be either Blob or String
 				if (value instanceof Blob) {
 					_blob = {
 						name: name,
-						value: value // unfortunately we can only send single Blob in one FormData
+						value: value, // unfortunately we can only send single Blob in one FormData,
+						filename: filename
 					};
 				} else if ('array' === valueType) {
 					name += '[]';
@@ -54,7 +56,8 @@ define("moxie/xhr/FormData", [
 				} else {
 					_fields.push({
 						name: name,
-						value: value.toString()
+						value: value.toString(),
+						filename: filename
 					});
 				}
 			},
@@ -87,6 +90,16 @@ define("moxie/xhr/FormData", [
 			*/
 			getBlobName: function() {
 				return _blob && _blob.name || null;
+			},
+
+			/**
+			Retrieves blob field filename.
+
+			@method getBlobFileName
+			@return {String} Either Blob field filename or null
+			*/
+			getBlobFileName: function() {
+				return _blob && _blob.filename || null;
 			},
 
 			/**
